@@ -1,0 +1,136 @@
+{
+  "books": [
+    {
+      "id": "1",
+      "title": "Clean Code",
+      "authorId": 1,
+      "year": 2008,
+      "publisher": "Prentice Hall",
+      "language": "English"
+    },
+    {
+      "id": "2",
+      "title": "The Pragmatic Programmer",
+      "authorId": 2,
+      "year": 1999,
+      "publisher": "Addison-Wesley",
+      "language": "English"
+    },
+    {
+      "id": "3",
+      "title": "Design Patterns",
+      "authorId": 3,
+      "year": 1994,
+      "publisher": "Addison-Wesley",
+      "language": "English"
+    },
+    {
+      "id": "4",
+      "title": "Refactoring",
+      "authorId": 4,
+      "year": 1999,
+      "publisher": "Addison-Wesley",
+      "language": "English"
+    },
+    {
+      "id": "5",
+      "title": "You Don't Know JS",
+      "authorId": 5,
+      "year": 2015,
+      "publisher": "O'Reilly Media",
+      "language": "English"
+    },
+    {
+      "id": "6",
+      "title": "Effective Java",
+      "authorId": 6,
+      "year": 2001,
+      "publisher": "Addison-Wesley",
+      "language": "English"
+    },
+    {
+      "id": "7",
+      "title": "JavaScript: The Good Parts",
+      "authorId": 7,
+      "year": 2008,
+      "publisher": "O'Reilly Media",
+      "language": "English"
+    },
+    {
+      "id": "8",
+      "title": "Code Complete",
+      "authorId": 8,
+      "year": 1993,
+      "publisher": "Microsoft Press",
+      "language": "English"
+    },
+    {
+      "id": "9",
+      "title": "Head First Design Patterns",
+      "authorId": 9,
+      "year": 2004,
+      "publisher": "O'Reilly Media",
+      "language": "English"
+    },
+    {
+      "id": "10",
+      "title": "Introduction to Algorithms",
+      "authorId": 10,
+      "year": 1990,
+      "publisher": "MIT Press",
+      "language": "English"
+    }
+  ],
+  "authors": [
+    {
+      "id": "1",
+      "name": "Robert C. Martin",
+      "nationality": "USA"
+    },
+    {
+      "id": "2",
+      "name": "Andrew Hunt",
+      "nationality": "USA"
+    },
+    {
+      "id": "3",
+      "name": "Erich Gamma",
+      "nationality": "Switzerland"
+    },
+    {
+      "id": "4",
+      "name": "Martin Fowler",
+      "nationality": "UK"
+    },
+    {
+      "id": "5",
+      "name": "Kyle Simpson",
+      "nationality": "USA"
+    },
+    {
+      "id": "6",
+      "name": "Joshua Bloch",
+      "nationality": "USA"
+    },
+    {
+      "id": "7",
+      "name": "Douglas Crockford",
+      "nationality": "USA"
+    },
+    {
+      "id": "8",
+      "name": "Steve McConnell",
+      "nationality": "USA"
+    },
+    {
+      "id": "9",
+      "name": "Eric Freeman",
+      "nationality": "USA"
+    },
+    {
+      "id": "10",
+      "name": "Thomas H. Cormen",
+      "nationality": "USA"
+    }
+  ]
+}
