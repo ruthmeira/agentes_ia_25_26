@@ -1,0 +1,168 @@
+# ✅ Checklist - Hito 2: Traductor Inteligente (Full-Stack con Ollama)
+
+## 🧱 Parte 1: Configuración inicial del proyecto   (**ruth**)
+- [x] Crear carpeta `traductor-ia-[nombre-iniciales]`
+- [x] Inicializar repositorio Git (`git init`)
+- [x] Crear rama de trabajo `git checkout -b hito2/desarrollo-ia`
+
+### 🗄 Base de datos SQLite3 (**samuel**)
+- [x] Crear carpeta `backend/db/`
+- [ ] No crear `traducciones.db` manualmente
+- [ ] Implementar `db.js` que genere la BD automáticamente al iniciar el servidor
+
+---
+
+## ⚙️ Parte 2: Backend - Implementación 
+
+### 2.1 `backend/db.js` (**samuel**)
+- [ ] Importar `better-sqlite3`
+- [ ] Crear o abrir BD `./db/traducciones.db`
+- [ ] Crear tabla `traducciones`
+- [ ] Exportar instancia de BD
+
+### 2.2 `backend/server.js` (**ruth**)
+- [ ] Importar `express`, `cors`, `dotenv`
+- [ ] Configurar middlewares (`express.json()`, `cors()`)
+- [ ] Cargar variables de entorno (`.env`)
+- [ ] Importar rutas (`routes.js`)
+- [ ] Levantar servidor en puerto del `.env`
+- [ ] Manejar errores 404 y globales
+
+### 2.3 `backend/routes.js` (**ruth**)
+**Endpoints requeridos:**
+- [ ] `GET /api/health` — comprobar estado
+- [ ] `POST /api/translate` — traducir texto
+- [ ] `GET /api/translations` — historial de traducciones
+- [ ] `GET /api/translations/:id` — traducción por ID
+- [ ] `DELETE /api/translations/:id` — eliminar una traducción
+- [ ] `DELETE /api/translations` — limpiar historial
+- [ ] `GET /api/languages` — lista de idiomas soportados
+
+### 2.4 `backend/services.js` (**samuel**)
+**Funciones requeridas:**
+- [ ] `traducir(text, sourceLang, targetLang)`
+- [ ] `obtenerHistorial(filtros)`
+- [ ] `obtenerTraduccionPorId(id)`
+- [ ] `eliminarTraduccion(id)`
+- [ ] `limpiarHistorial()`
+- [ ] `validarIdioma(codigo)`
+
+### 2.5 Integración con Ollama (**ruth**)
+- [ ] Configurar `.env` con `OLLAMA_URL=http://localhost:11434`
+- [ ] Conectarse a `/api/generate` (POST)
+- [ ] Medir tiempo de respuesta
+- [ ] Insertar traducción en BD
+- [ ] Manejar errores y timeouts
+
+### 2.6 Base de datos SQLite3 (**samuel**)
+- [ ] Insertar traducciones al recibir respuesta
+- [ ] Consultar historial al iniciar o filtrar
+- [ ] Evitar reconsultas a Ollama
+- [ ] Permitir filtrado eficiente por idioma
+- [ ] Ordenar resultados por fecha
+
+---
+
+## 🎨 Parte 3: Frontend - Implementación
+
+### 3.1 `frontend/index.html` (**samuel**)
+- [ ] Input/textarea para texto
+- [ ] Select idioma origen y destino
+- [ ] Botones: “Traducir” y “Limpiar”
+- [ ] Área resultado de traducción
+- [ ] Área historial
+- [ ] Indicadores de carga
+- [ ] Mensajes de error
+
+### 3.2 `frontend/style.css` (**ruth**)
+- [ ] Estilos básicos (sin frameworks)
+- [ ] Layout responsivo
+- [ ] Estados de carga y error
+- [ ] Interfaz clara y diferenciada
+
+### 3.3 `frontend/main.js` (**ruth**)
+- [ ] Manejar estado de la app
+- [ ] `fetch` a `/api/translate`
+- [ ] Mostrar resultado en pantalla
+- [ ] `fetch` a `/api/translations`
+- [ ] Eliminar traducciones individuales
+- [ ] Manejar errores y mostrar mensajes
+
+---
+
+## 🧪 Parte 4: Validación y Tests (**samuel**)
+- [ ] Crear `validacion.http`
+- [ ] Test `GET /api/health`
+- [ ] Test `POST /api/translate` válido
+- [ ] Test `POST /api/translate` con errores
+- [ ] Test `GET /api/translations`
+- [ ] Test `GET /api/languages`
+- [ ] Test `GET /api/translations/:id`
+- [ ] Test `DELETE /api/translations/:id`
+- [ ] Test `DELETE /api/translations`
+
+---
+
+## 🐳 Parte 5: Dockerización 
+
+### 5.1 `backend/Dockerfile` (**ruth**)
+- [ ] Imagen base `node:20-alpine`
+- [ ] `WORKDIR /app`
+- [ ] Copiar `package.json` e instalar dependencias
+- [ ] Copiar código fuente
+- [ ] `EXPOSE` puerto
+- [ ] `CMD: npm start`
+
+### 5.2 `docker-compose.yml` (**samuel**)     
+- [ ] Servicio `backend`
+- [ ] Servicio `ollama`
+- [ ] Servicio `frontend` (opcional)
+- [ ] Configurar red compartida
+- [ ] Variables de entorno
+- [ ] Montar volúmenes si es necesario
+
+### 5.3 Verificación (**ruth**)
+- [ ] Ejecutar `docker compose up --build`
+- [ ] Verificar acceso `http://localhost:3000`
+- [ ] Comprobar `http://localhost:11434` (Ollama activo)
+
+---
+
+## 📖 Parte 6: Documentación (`README.md`) (**samuel/ruth**) 
+- [ ] Descripción general del proyecto
+- [ ] Autores
+- [ ] Requisitos del sistema
+- [ ] Instalación y configuración
+- [ ] Ejecución local y con Docker
+- [ ] Detalle de API endpoints con ejemplos
+- [ ] Explicación de estructura de carpetas
+- [ ] Decisiones de diseño (SQLite3, Vanilla JS)
+- [ ] Limitaciones conocidas
+- [ ] Extensiones futuras
+
+---
+
+## 🌿 Parte 7: Git y Control de versiones
+- [ ] Rama `hito2/desarrollo-ia` creada
+- [ ] Commits incrementales y descriptivos
+- [ ] Pull Request hacia `main`
+- [ ] Título PR: “Entrega: Traductor Inteligente con Ollama”
+- [ ] Descripción con resumen, autores y pruebas
+- [ ] Co-authored commits de ambos integrantes
+
+---
+
+## 📊 Rúbrica y requisitos de entrega
+- [ ] Backend configurado correctamente
+- [ ] Integración Ollama funcional
+- [ ] Base de datos persistente
+- [ ] 7 endpoints operativos
+- [ ] Frontend funcional y claro
+- [ ] Validaciones y manejo de errores
+- [ ] Docker Compose funcional
+- [ ] README completo
+- [ ] Tests `validacion.http`
+- [ ] Uso correcto de Git
+- [ ] `Checklist.md` completado
+- [ ] `.env.example` incluido y `.env` excluido del repositorio
+- [ ] Trabajo en pareja documentado (autores y división de tareas)
