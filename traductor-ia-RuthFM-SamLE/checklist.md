@@ -7,18 +7,18 @@
 
 ### 🗄 Base de datos SQLite3 (**samuel**)
 - [x] Crear carpeta `backend/db/`
-- [ ] No crear `traducciones.db` manualmente
-- [ ] Implementar `db.js` que genere la BD automáticamente al iniciar el servidor
+- [x] No crear `traducciones.db` manualmente
+- [x] Implementar `db.js` que genere la BD automáticamente al iniciar el servidor
 
 ---
 
 ## ⚙️ Parte 2: Backend - Implementación 
 
 ### 2.1 `backend/db.js` (**samuel**)
-- [ ] Importar `better-sqlite3`
-- [ ] Crear o abrir BD `./db/traducciones.db`
-- [ ] Crear tabla `traducciones`
-- [ ] Exportar instancia de BD
+- [x] Importar `better-sqlite3`
+- [x] Crear o abrir BD `./db/traducciones.db`
+- [x] Crear tabla `traducciones`
+- [x] Exportar instancia de BD
 
 ### 2.2 `backend/server.js` (**ruth**)
 - [x] Importar `express`, `cors`, `dotenv`
