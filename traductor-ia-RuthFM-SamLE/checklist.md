@@ -21,22 +21,22 @@
 - [ ] Exportar instancia de BD
 
 ### 2.2 `backend/server.js` (**ruth**)
-- [ ] Importar `express`, `cors`, `dotenv`
-- [ ] Configurar middlewares (`express.json()`, `cors()`)
-- [ ] Cargar variables de entorno (`.env`)
-- [ ] Importar rutas (`routes.js`)
-- [ ] Levantar servidor en puerto del `.env`
-- [ ] Manejar errores 404 y globales
+- [x] Importar `express`, `cors`, `dotenv`
+- [x] Configurar middlewares (`express.json()`, `cors()`)
+- [x] Cargar variables de entorno (`.env`)
+- [x] Importar rutas (`routes.js`)
+- [x] Levantar servidor en puerto del `.env`
+- [x] Manejar errores 404 y globales
 
 ### 2.3 `backend/routes.js` (**ruth**)
 **Endpoints requeridos:**
-- [ ] `GET /api/health` — comprobar estado
-- [ ] `POST /api/translate` — traducir texto
-- [ ] `GET /api/translations` — historial de traducciones
-- [ ] `GET /api/translations/:id` — traducción por ID
-- [ ] `DELETE /api/translations/:id` — eliminar una traducción
-- [ ] `DELETE /api/translations` — limpiar historial
-- [ ] `GET /api/languages` — lista de idiomas soportados
+- [x] `GET /api/health` — comprobar estado
+- [x] `POST /api/translate` — traducir texto
+- [x] `GET /api/translations` — historial de traducciones
+- [x] `GET /api/translations/:id` — traducción por ID
+- [x] `DELETE /api/translations/:id` — eliminar una traducción
+- [x] `DELETE /api/translations` — limpiar historial
+- [x] `GET /api/languages` — lista de idiomas soportados
 
 ### 2.4 `backend/services.js` (**samuel**)
 **Funciones requeridas:**
