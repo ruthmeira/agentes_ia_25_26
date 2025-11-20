@@ -1,6 +1,6 @@
 // backend/services.js
 import fetch from "node-fetch";
-import db from "./db/db.js";
+import db from "./db.js";
 
 // ------------------------------
 // VALIDACIÓN DE IDIOMAS
