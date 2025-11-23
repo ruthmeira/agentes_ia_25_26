@@ -1,0 +1,78 @@
+<!doctype html>
+<h2 id="trad-title">Traducir texto</h2>
+
+
+<form id="translate-form" novalidate>
+<div>
+<label for="source-text">Texto a traducir</label>
+<textarea id="source-text" name="sourceText" rows="6" placeholder="Escribe o pega aquí el texto" required></textarea>
+</div>
+
+
+<div class="row" style="margin-top:.75rem">
+<div>
+<label for="lang-from">Idioma origen</label>
+<select id="lang-from" name="langFrom" aria-label="Idioma origen">
+<option value="auto">Detectar idioma</option>
+<option value="es">Español</option>
+<option value="en">Inglés</option>
+<option value="fr">Francés</option>
+<option value="de">Alemán</option>
+</select>
+</div>
+
+
+<div>
+<label for="lang-to">Idioma destino</label>
+<select id="lang-to" name="langTo" aria-label="Idioma destino">
+<option value="en">Inglés</option>
+<option value="es" selected>Español</option>
+<option value="fr">Francés</option>
+<option value="de">Alemán</option>
+</select>
+</div>
+</div>
+
+
+<div class="controls">
+<button type="submit" id="btn-translate">Traducir</button>
+<button type="button" id="btn-clear" class="secondary">Limpiar</button>
+
+
+<div id="loading-indicator" class="loader hidden" role="status" aria-live="polite">Cargando…</div>
+</div>
+
+
+<div id="form-error" class="error hidden" role="alert" aria-live="assertive"></div>
+</form>
+</section>
+
+
+<section class="card" aria-labelledby="result-title">
+<h2 id="result-title">Resultado</h2>
+<div id="result-area" class="result" aria-live="polite">—</div>
+</section>
+
+
+<section class="card" aria-labelledby="history-title">
+<h2 id="history-title">Historial de traducciones</h2>
+<div id="history-area">
+<ul id="history-list" aria-live="polite">
+<!-- Entradas añadidas dinámicamente -->
+</ul>
+<div style="margin-top:.5rem">
+<button type="button" id="btn-clear-history" class="secondary">Borrar historial</button>
+</div>
+</div>
+</section>
+</main>
+
+
+<footer style="text-align:center;margin-top:1rem">Hecho con ❤️ — Interfaz básica</footer>
+
+
+<!-- Si quieres, puedo añadir el JS que conecte con tu API de traducción y guarde el historial en localStorage. -->
+
+
+</body>
+</html>

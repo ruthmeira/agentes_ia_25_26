@@ -1,6 +1,8 @@
+//Imports
 // backend/services.js
 import fetch from "node-fetch";
-import db from "./db.js";
+import { db } from './db.js';
+
 
 // ------------------------------
 // VALIDACIÓN DE IDIOMAS
@@ -9,6 +11,8 @@ export function validarIdioma(lang) {
   const validos = ["es", "en", "fr"];
   return validos.includes(lang);
 }
+
+//
 
 // ------------------------------
 // 2.5 - TRADUCIR TEXTO CON OLLAMA
@@ -61,8 +65,8 @@ export async function traducir(text, sourceLang, targetLang) {
   const end = Date.now();
   const duration = end - start;
 
-  // Formato compatible con el backend
-  return {
+  // Construimos el objeto final
+  const traduccionData = {
     texto_original: text,
     traduccion: data.response,
     idioma_origen: sourceLang,
@@ -70,15 +74,99 @@ export async function traducir(text, sourceLang, targetLang) {
     modelo: MODEL,
     duracion_ms: duration
   };
+
+
+  // GUARDAR DIRECTAMENTE EN LA BASE DE DATOS 🖥️
+
+  db.prepare(`
+    INSERT INTO historial (
+      texto_original,
+      traduccion,
+      idioma_origen,
+      idioma_destino,
+      modelo,
+      duracion_ms
+    )
+    VALUES (
+      @texto_original,
+      @traduccion,
+      @idioma_origen,
+      @idioma_destino,
+      @modelo,
+      @duracion_ms
+    )
+  `).run(traduccionData);
+
+  // ---------------------------------------
+
+  return traduccionData;
+
 }
 
-// --------------------------------------------------
-// EL RESTO ES DE TU COMPAÑERO (PUNTO 2.4)
-// LO DEJAMOS COMO PLACEHOLDER
-// --------------------------------------------------
+export async function obtenerHistorial(filtros = {}) {
+  const { sourceLang, targetLang } = filtros;
 
-export async function obtenerHistorial() {
-  throw new Error("Función obtenerHistorial() no implementada.");
+
+  // VALIDACIÓN DE IDIOMAS
+
+  if (sourceLang && !validarIdioma(sourceLang)) {
+    throw new Error(`Idioma origen no válido: ${sourceLang}`);
+  }
+  if (targetLang && !validarIdioma(targetLang)) {
+    throw new Error(`Idioma destino no válido: ${targetLang}`);
+  }
+
+
+  // VALIDACIÓN DE LIMIT
+
+
+  // Si viene algo, se usa. Si no, default = 50.
+  let limit = filtros.limit ?? 50;
+
+  // Convertir a número
+  limit = Number(limit);
+
+  if (!Number.isInteger(limit)) {
+    throw new Error("El límite debe ser un número entero.");
+  }
+
+  if (limit <= 0) {
+    throw new Error("El límite debe ser mayor que 0.");
+  }
+
+  if (limit > 50) {
+    throw new Error("El límite máximo permitido es 50.");
+  }
+
+  // ------------------------------
+  // CONSTRUCCIÓN DE QUERY
+  // ------------------------------
+
+  let query = `SELECT * FROM historial`;
+  const condiciones = [];
+  const params = {};
+
+  if (sourceLang) {
+    condiciones.push("idioma_origen = @sourceLang");
+    params.sourceLang = sourceLang;
+  }
+
+  if (targetLang) {
+    condiciones.push("idioma_destino = @targetLang");
+    params.targetLang = targetLang;
+  }
+
+  if (condiciones.length > 0) {
+    query += ` WHERE ${condiciones.join(" AND ")}`;
+  }
+
+  query += ` ORDER BY fecha DESC`;
+  query += ` LIMIT @limit`;
+
+  params.limit = limit;
+
+  const stmt = db.prepare(query);
+  return stmt.all(params);
 }
 
 export async function obtenerTraduccionPorId() {

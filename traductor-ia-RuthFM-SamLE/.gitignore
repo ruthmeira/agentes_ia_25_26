@@ -3,3 +3,5 @@
 .env
 .DS_Store
 node_modules/
+traducciones.db-shm
+traducciones.db-wal

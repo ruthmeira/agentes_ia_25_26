@@ -40,7 +40,7 @@
 
 ### 2.4 `backend/services.js` (**samuel**)
 **Funciones requeridas:**
-- [ ] `traducir(text, sourceLang, targetLang)`
+- [ ] `traducir(text, sourceLang, targetLang)` (**ruth**)
 - [ ] `obtenerHistorial(filtros)`
 - [ ] `obtenerTraduccionPorId(id)`
 - [ ] `eliminarTraduccion(id)`
