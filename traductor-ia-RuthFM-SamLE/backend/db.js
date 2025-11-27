@@ -18,7 +18,7 @@ db.exec(`
     idioma_origen TEXT NOT NULL,
     idioma_destino TEXT NOT NULL,
     modelo TEXT NOT NULL,
-    duracion_ms INTEGER NOT NULL,
-    fecha DATETIME DEFAULT CURRENT_TIMESTAMP
+    duracion_ms INTEGER NOT NULL
   );
 `);
+//añadir fecha formateada ya si eso

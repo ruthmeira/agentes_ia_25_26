@@ -1,6 +1,5 @@
 //Imports
 // backend/services.js
-import fetch from "node-fetch";
 import { db } from './db.js';
 
 
@@ -17,6 +16,9 @@ export function validarIdioma(lang) {
 // ------------------------------
 // 2.5 - TRADUCIR TEXTO CON OLLAMA
 // ------------------------------
+
+//Tabla se le ha llamado "historial"
+
 export async function traducir(text, sourceLang, targetLang) {
   // Validaciones básicas
   if (!text || text.trim() === "") {
@@ -39,9 +41,18 @@ export async function traducir(text, sourceLang, targetLang) {
   const MODEL = process.env.AI_MODEL || "mistral";
 
   // Prompt para Ollama
-  const prompt = `Traduce este texto del idioma ${sourceLang} al ${targetLang} sin añadir nada extra:
-  
-"${text}"`;
+  const prompt = `
+    Traduce el siguiente texto del idioma ${sourceLang} al idioma ${targetLang}.
+    ⚠️ IMPORTANTE:
+    - No añadas explicaciones.
+    - No analices el idioma.
+    - No digas si ya está traducido.
+    - No añadas comillas.
+    - Solo responde con la traducción final y nada más.
+
+    Texto:
+    ${text}
+    `;
 
   const start = Date.now(); // tiempo inicial
 
@@ -160,7 +171,7 @@ export async function obtenerHistorial(filtros = {}) {
     query += ` WHERE ${condiciones.join(" AND ")}`;
   }
 
-  query += ` ORDER BY fecha DESC`;
+  query += ` ORDER BY id DESC`;
   query += ` LIMIT @limit`;
 
   params.limit = limit;
@@ -169,14 +180,63 @@ export async function obtenerHistorial(filtros = {}) {
   return stmt.all(params);
 }
 
-export async function obtenerTraduccionPorId() {
-  throw new Error("Función obtenerTraduccionPorId() no implementada.");
+export async function obtenerTraduccionPorId(id) {
+  // 1. Validar ID
+    const numeroId = Number(id);
+
+    if (isNaN(numeroId) || numeroId <= 0) {
+        return {
+          error: 400,
+          mensaje: "ID inválido. Debe ser un número entero positivo."
+        };
+    }
+
+    // 2. Consultar la BD
+    const stmt = db.prepare("SELECT * FROM historial WHERE id = ?");
+    const resultado = stmt.get(numeroId);
+
+    // 3. Si no existe → 404
+    if (!resultado) {
+        return {
+          error: 404,
+          mensaje: "Traducción no encontrada"
+        };
+    }
+
+    // 4. Si existe → devolver objeto completo
+    return {
+      data: resultado
+    };
 }
 
-export async function eliminarTraduccion() {
-  throw new Error("Función eliminarTraduccion() no implementada.");
+export async function eliminarTraduccion(id) {
+  //comprobamos que exista id usando obtenerTraduccionPorId() 
+  await obtenerTraduccionPorId(id)
+  //hacemos la query
+  const stmt = db.prepare("DELETE FROM historial WHERE id = ?");
+  stmt.run(id);
+
+  //devovemos confirmacion
+  return  { 
+    success: true, 
+    mensaje: `Traducción con ID ${id} eliminada.` 
+  } 
+
+
 }
 
 export async function limpiarHistorial() {
-  throw new Error("Función limpiarHistorial() no implementada.");
+  //Eliminar todas las traducciones de historial
+  const stmt = db.prepare("DELETE FROM historial");
+  // Ejecutar el borrado
+  const resultado = stmt.run();
+  //Contar cuántas filas se borraron
+  const filasEliminadas = resultado.changes;
+  //devolver confirmación
+  return {
+    success: true,
+    filasEliminadas,
+    mensaje: `${filasEliminadas} traducciones eliminadas.`
+  }
+  
 }
