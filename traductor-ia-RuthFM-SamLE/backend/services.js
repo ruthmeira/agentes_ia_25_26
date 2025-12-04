@@ -14,12 +14,11 @@ export function validarIdioma(lang) {
 //
 
 // ------------------------------
-// 2.5 - TRADUCIR TEXTO CON OLLAMA
+// 2 - TRADUCIR TEXTO CON OLLAMA
 // ------------------------------
 
-//Tabla se le ha llamado "historial"
 
-export async function traducir(text, sourceLang, targetLang) {
+export async function traducir(text, sourceLang, targetLang, onChunk) {
   // Validaciones básicas
   if (!text || text.trim() === "") {
     throw new Error("El texto no puede estar vacío.");
@@ -37,7 +36,7 @@ export async function traducir(text, sourceLang, targetLang) {
     throw new Error("El texto supera el límite de 5000 caracteres.");
   }
 
-  const OLLAMA_URL = process.env.AI_API_URL;
+  const OLLAMA_URL = process.env.AI_API_URL2;
   const MODEL = process.env.AI_MODEL || "mistral";
 
   // Prompt para Ollama
@@ -63,7 +62,7 @@ export async function traducir(text, sourceLang, targetLang) {
     body: JSON.stringify({
       model: MODEL,
       prompt: prompt,
-      stream: false
+      stream: true
     })
   });
 
@@ -71,15 +70,40 @@ export async function traducir(text, sourceLang, targetLang) {
     throw new Error("Error al conectar con Ollama.");
   }
 
-  const data = await response.json();
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+  let fullText = "";
+
+  while (true) {
+    const { value, done } = await reader.read();
+    if (done) break;
+
+    // Decodificar chunk
+    const chunkStr = decoder.decode(value, { stream: true });
+
+    // Cada chunk puede venir con varias líneas JSON
+    const lines = chunkStr.split("\n").filter(Boolean);
+
+    for (const line of lines) {
+      try {
+        const obj = JSON.parse(line);
+        if (obj.response) {
+          fullText += obj.response;       // concatenar fragmentos
+          if (onChunk) onChunk(obj.response); // enviar fragmento al frontend
+        }
+      } catch (err) {
+        // ignorar líneas inválidas
+      }
+    }
+  }
 
   const end = Date.now();
   const duration = end - start;
 
-  // Construimos el objeto final
+  // Guardar finalmente en la BD
   const traduccionData = {
     texto_original: text,
-    traduccion: data.response,
+    traduccion: fullText,
     idioma_origen: sourceLang,
     idioma_destino: targetLang,
     modelo: MODEL,
@@ -240,3 +264,4 @@ export async function limpiarHistorial() {
   }
   
 }
+
