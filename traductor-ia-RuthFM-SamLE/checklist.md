@@ -40,53 +40,53 @@
 
 ### 2.4 `backend/services.js` (**samuel**)
 **Funciones requeridas:**
-- [ ] `traducir(text, sourceLang, targetLang)` (**ruth**)
-- [ ] `obtenerHistorial(filtros)`
-- [ ] `obtenerTraduccionPorId(id)`
-- [ ] `eliminarTraduccion(id)`
-- [ ] `limpiarHistorial()`
-- [ ] `validarIdioma(codigo)`
+- [x] `traducir(text, sourceLang, targetLang, onChuck)` (**ruth**)
+- [x] `obtenerHistorial(filtros)`
+- [x] `obtenerTraduccionPorId(id)`
+- [x] `eliminarTraduccion(id)`
+- [x] `limpiarHistorial()`
+- [x] `validarIdioma(codigo)`
 
 ### 2.5 Integración con Ollama (**ruth**)
-- [ ] Configurar `.env` con `OLLAMA_URL=http://localhost:11434`
-- [ ] Conectarse a `/api/generate` (POST)
-- [ ] Medir tiempo de respuesta
-- [ ] Insertar traducción en BD
-- [ ] Manejar errores y timeouts
+- [x] Configurar `.env` con `OLLAMA_URL=http://192.168.50.99:11434`
+- [x] Conectarse a `/api/generate` (POST)
+- [x] Medir tiempo de respuesta
+- [x] Insertar traducción en BD
+- [x] Manejar errores y timeouts
 
 ### 2.6 Base de datos SQLite3 (**samuel**)
-- [ ] Insertar traducciones al recibir respuesta
-- [ ] Consultar historial al iniciar o filtrar
-- [ ] Evitar reconsultas a Ollama
-- [ ] Permitir filtrado eficiente por idioma
-- [ ] Ordenar resultados por fecha
+- [x] Insertar traducciones al recibir respuesta
+- [x] Consultar historial al iniciar o filtrar
+- [x] Evitar reconsultas a Ollama
+- [x] Permitir filtrado eficiente por idioma
+- [x] Ordenar resultados por fecha
 
 ---
 
 ## 🎨 Parte 3: Frontend - Implementación
 
-### 3.1 `frontend/index.html` (**samuel**)
-- [ ] Input/textarea para texto
-- [ ] Select idioma origen y destino
-- [ ] Botones: “Traducir” y “Limpiar”
-- [ ] Área resultado de traducción
-- [ ] Área historial
-- [ ] Indicadores de carga
-- [ ] Mensajes de error
+### 3.1 `frontend/index.html` (**Ruth**)
+- [x] Input/textarea para texto
+- [x] Select idioma origen y destino
+- [x] Botones: “Traducir” y “Limpiar”
+- [x] Área resultado de traducción
+- [x] Área historial
+- [x] Indicadores de carga
+- [x] Mensajes de error
 
 ### 3.2 `frontend/style.css` (**ruth**)
-- [ ] Estilos básicos (sin frameworks)
-- [ ] Layout responsivo
-- [ ] Estados de carga y error
-- [ ] Interfaz clara y diferenciada
+- [x] Estilos básicos (sin frameworks)
+- [x] Layout responsivo
+- [x] Estados de carga y error
+- [x] Interfaz clara y diferenciada
 
 ### 3.3 `frontend/main.js` (**ruth**)
-- [ ] Manejar estado de la app
-- [ ] `fetch` a `/api/translate`
-- [ ] Mostrar resultado en pantalla
-- [ ] `fetch` a `/api/translations`
-- [ ] Eliminar traducciones individuales
-- [ ] Manejar errores y mostrar mensajes
+- [x] Manejar estado de la app
+- [x] `fetch` a `/api/translate`
+- [x] Mostrar resultado en pantalla
+- [x] `fetch` a `/api/translations`
+- [x] Eliminar traducciones individuales
+- [x] Manejar errores y mostrar mensajes
 
 ---
 
