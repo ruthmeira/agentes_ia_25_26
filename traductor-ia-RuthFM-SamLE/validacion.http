@@ -1,0 +1,157 @@
+@baseUrl = http://localhost:3002/api
+
+#1) TEST HEALTHCHECK
+###############################################################
+GET {{baseUrl}}/health
+Accept: application/json
+
+###############################################################
+#2) POST /translate - PETICIÓN VÁLIDA
+###############################################################
+POST {{baseUrl}}/translate
+Content-Type: application/json
+
+{
+"text": "Hola mundo",
+"sourceLang": "es",
+"targetLang": "en"
+}
+
+###############################################################
+#3) POST /translate - ERROR: texto vacío
+###############################################################
+POST {{baseUrl}}/translate
+Content-Type: application/json
+
+{
+"text": "",
+"sourceLang": "es",
+"targetLang": "en"
+}
+
+###############################################################
+#4) POST /translate - ERROR: idiomas iguales
+###############################################################
+POST {{baseUrl}}/translate
+Content-Type: application/json
+
+{
+"text": "Hola",
+"sourceLang": "es",
+"targetLang": "es"
+}
+
+###############################################################
+# 5) POST /translate - ERROR: idioma no soportado
+###############################################################
+POST {{baseUrl}}/translate
+Content-Type: application/json
+
+{
+"text": "Bonjour",
+"sourceLang": "fr",
+"targetLang": "jp"
+}
+
+###############################################################
+# 6) POST /translate - PETICIÓN VÁLIDA CARACTERES MAXIMOS EXCEDIDOS
+###############################################################
+POST {{baseUrl}}/translate
+Content-Type: application/json
+
+{
+"text": "Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye.Hello, goodbye. Hello, goodbye. Hello, goodbye, goodbye. Hello, goodbye. Hello, goodbye, goodbye. Hello, goodbye. Hello, goodbye, goodbye. Hello, goodbye. Hello, goodbye, goodbye. Hello, goodbye. Hello, goodbye, goodbye. Hello, goodbye. Hello, goodbye, goodbye. Hello, goodbye. Hello, goodbye, goodbye. Hello, goodbye. Hello, goodbye, goodbye. Hello, goodbye. Hello, goodbye, goodbye. Hello, goodbye. Hello, goodbye, goodbye. Hello, goodbye. Hello, goodbye, goodbye. Hello, goodbye. Hello, goodbye, goodbye. Hello, goodbye. Hello, goodbye.Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye.Hello, goodbye. Hello, goodbye. Hello, goodbye, goodbye. Hello, goodbye. Hello, goodbye, goodbye. Hello, goodbye. Hello, goodbye, goodbye. Hello, goodbye. Hello, goodbye, goodbye. Hello, goodbye. Hello, goodbye, goodbye. Hello, goodbye. Hello, goodbye, goodbye. Hello, goodbye.Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye. Hello, goodbye.Hello, goodbye. Hello, goodbye. Hello, goodbye, goodbye. Hello, goodbye. Hello, goodbye, goodbye. Hello, goodbye. Hello, goodbye, goodbye. Hello, goodbye. Hello, goodbye, goodbye. Hello, goodbye. Hello, goodbye, goodbye. Hello, goodbye. Hello, goodbye, goodbye. Hello, goodbye.",
+"sourceLang": "en",
+"targetLang": "es"
+}
+
+###############################################################
+# 7) GET /translations - OBTENER TODO EL HISTORIAL
+###############################################################
+GET {{baseUrl}}/translations
+Accept: application/json
+
+###############################################################
+# 8) GET /translations - FILTRANDO
+###############################################################
+GET {{baseUrl}}/translations?sourceLang=es&targetLang=en&limit=1
+Accept: application/json
+
+###############################################################
+# 9) GET /translations - ERROR LIMIT NO VALIDO (excede 50)
+###############################################################
+GET {{baseUrl}}/translations?limit=51
+Accept: application/json
+
+###############################################################
+# 10) GET /translations - ERROR LIMIT NO VALIDO (letras)
+###############################################################
+GET {{baseUrl}}/translations?limit=abc
+Accept: application/json
+
+###############################################################
+# 11) GET /translations - ERROR LIMIT NO VALIDO (negativo)
+###############################################################
+GET {{baseUrl}}/translations?limit=-1
+Accept: application/json
+
+###############################################################
+# 12) GET /translations - Idioma de origen no valido
+###############################################################
+GET {{baseUrl}}/translations?sourceLang=ge&targetLang=en
+Accept: application/json
+
+###############################################################
+# 13) GET /translations - Idioma de destion no valido
+###############################################################
+GET {{baseUrl}}/translations?sourceLang=es&targetLang=fer
+Accept: application/json
+
+###############################################################
+# 14) GET /languages
+###############################################################
+GET {{baseUrl}}/languages
+Accept: application/json
+
+###############################################################
+# 15) GET /translations/:id - ID válido
+###############################################################
+GET {{baseUrl}}/translations/2
+Accept: application/json
+
+###############################################################
+# 16) GET /translations/:id - ID inválido (texto)
+###############################################################
+GET {{baseUrl}}/translations/abc
+Accept: application/json
+
+###############################################################
+# 17) GET /translations/:id - ID inválido (negativo)
+###############################################################
+GET {{baseUrl}}/translations/-1
+Accept: application/json
+
+###############################################################
+# 18) DELETE /translations/:id - BORRAR UNO
+###############################################################
+DELETE {{baseUrl}}/translations/7
+Accept: application/json
+
+###############################################################
+# 19) DELETE /translations/:id - ERROR id no existente
+###############################################################
+DELETE {{baseUrl}}/translations/9999
+Accept: application/json
+
+###############################################################
+# 20) DELETE /translations/:id - ERROR id no existente letras
+###############################################################
+DELETE {{baseUrl}}/translations/abc
+Accept: application/json
+
+
+###############################################################
+# 21) DELETE /translations - LIMPIAR TODO EL HISTORIAL
+###############################################################
+DELETE {{baseUrl}}/translations
+Accept: application/json

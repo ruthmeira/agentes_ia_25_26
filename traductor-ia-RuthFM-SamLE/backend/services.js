@@ -235,7 +235,12 @@ export async function obtenerTraduccionPorId(id) {
 
 export async function eliminarTraduccion(id) {
   //comprobamos que exista id usando obtenerTraduccionPorId() 
-  await obtenerTraduccionPorId(id)
+  const traduccion= await obtenerTraduccionPorId(id)
+
+  if (traduccion.error){
+    return traduccion
+  }
+
   //hacemos la query
   const stmt = db.prepare("DELETE FROM historial WHERE id = ?");
   stmt.run(id);
