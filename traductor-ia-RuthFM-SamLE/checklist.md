@@ -106,25 +106,25 @@
 ## 🐳 Parte 5: Dockerización 
 
 ### 5.1 `backend/Dockerfile` (**ruth**)
-- [ ] Imagen base `node:20-alpine`
-- [ ] `WORKDIR /app`
-- [ ] Copiar `package.json` e instalar dependencias
-- [ ] Copiar código fuente
-- [ ] `EXPOSE` puerto
-- [ ] `CMD: npm start`
+- [x] Usar imagen `node:20-alpine`
+- [x] Definir `WORKDIR /app`
+- [x] Copiar `package.json`
+- [x] Instalar dependencias
+- [x] Copiar código del backend
+- [x] Exponer puerto del backend
+- [x] Establecer comando `npm start`
 
 ### 5.2 `docker-compose.yml` (**samuel**)     
-- [ ] Servicio `backend`
-- [ ] Servicio `ollama`
-- [ ] Servicio `frontend` (opcional)
-- [ ] Configurar red compartida
-- [ ] Variables de entorno
+- [ ] Crear servicio `backend`
+- [ ] Crear servicio `frontend` (opcional)
+- [ ] Configurar redes necesarias
+- [ ] Importar variables desde `.env`
+- [ ] No incluir servicio Ollama
 - [ ] Montar volúmenes si es necesario
 
 ### 5.3 Verificación (**ruth**)
-- [ ] Ejecutar `docker compose up --build`
-- [ ] Verificar acceso `http://localhost:3000`
-- [ ] Comprobar `http://localhost:11434` (Ollama activo)
+- [x] Ejecutar `docker compose up --build`
+- [x] Verificar acceso `http://localhost:5173`
 
 ---
 
@@ -143,26 +143,23 @@
 ---
 
 ## 🌿 Parte 7: Git y Control de versiones
-- [ ] Rama `hito2/desarrollo-ia` creada
-- [ ] Commits incrementales y descriptivos
-- [ ] Pull Request hacia `main`
-- [ ] Título PR: “Entrega: Traductor Inteligente con Ollama”
-- [ ] Descripción con resumen, autores y pruebas
-- [ ] Co-authored commits de ambos integrantes
+- [x] Rama `hito2/desarrollo-ia` creada
+- [x] Commits incrementales y descriptivos
+- [x] Pull Request hacia `main`
+- [x] Título PR: “Entrega: Traductor Inteligente con Ollama”
+- [x] Descripción con resumen, autores y pruebas
+- [x] Co-authored commits de ambos integrantes
 
 ---
 
 ## 📊 Rúbrica y requisitos de entrega
-- [ ] Backend configurado correctamente
-- [ ] Integración Ollama funcional
-- [ ] Base de datos persistente
-- [ ] 7 endpoints operativos
-- [ ] Frontend funcional y claro
-- [ ] Validaciones y manejo de errores
-- [ ] Docker Compose funcional
-- [ ] README completo
-- [ ] Tests `validacion.http`
-- [ ] Uso correcto de Git
-- [ ] `Checklist.md` completado
-- [ ] `.env.example` incluido y `.env` excluido del repositorio
-- [ ] Trabajo en pareja documentado (autores y división de tareas)
+- [x] Backend funcionando
+- [x] Frontend funcionando
+- [x] Conexión con Ollama remoto
+- [x] Historial en SQLite3 persistente
+- [x] Todos los endpoints operativos
+- [x] Docker del backend funcional
+- [x] README completo
+- [x] Checklist incluido
+- [x] `.env` ignorado
+- [x] `.env.example` incluido
