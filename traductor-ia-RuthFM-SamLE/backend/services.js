@@ -206,38 +206,38 @@ export async function obtenerHistorial(filtros = {}) {
 
 export async function obtenerTraduccionPorId(id) {
   // 1. Validar ID
-    const numeroId = Number(id);
+  const numeroId = Number(id);
 
-    if (isNaN(numeroId) || numeroId <= 0) {
-        return {
-          error: 400,
-          mensaje: "ID inválido. Debe ser un número entero positivo."
-        };
-    }
-
-    // 2. Consultar la BD
-    const stmt = db.prepare("SELECT * FROM historial WHERE id = ?");
-    const resultado = stmt.get(numeroId);
-
-    // 3. Si no existe → 404
-    if (!resultado) {
-        return {
-          error: 404,
-          mensaje: "Traducción no encontrada"
-        };
-    }
-
-    // 4. Si existe → devolver objeto completo
+  if (isNaN(numeroId) || numeroId <= 0) {
     return {
-      data: resultado
+      error: 400,
+      mensaje: "ID inválido. Debe ser un número entero positivo."
     };
+  }
+
+  // 2. Consultar la BD
+  const stmt = db.prepare("SELECT * FROM historial WHERE id = ?");
+  const resultado = stmt.get(numeroId);
+
+  // 3. Si no existe → 404
+  if (!resultado) {
+    return {
+      error: 404,
+      mensaje: "Traducción no encontrada"
+    };
+  }
+
+  // 4. Si existe → devolver objeto completo
+  return {
+    data: resultado
+  };
 }
 
 export async function eliminarTraduccion(id) {
   //comprobamos que exista id usando obtenerTraduccionPorId() 
-  const traduccion= await obtenerTraduccionPorId(id)
+  const traduccion = await obtenerTraduccionPorId(id)
 
-  if (traduccion.error){
+  if (traduccion.error) {
     return traduccion
   }
 
@@ -246,10 +246,10 @@ export async function eliminarTraduccion(id) {
   stmt.run(id);
 
   //devovemos confirmacion
-  return  { 
-    success: true, 
-    mensaje: `Traducción con ID ${id} eliminada.` 
-  } 
+  return {
+    success: true,
+    mensaje: `Traducción con ID ${id} eliminada.`
+  }
 
 
 }
@@ -267,6 +267,6 @@ export async function limpiarHistorial() {
     filasEliminadas,
     mensaje: `${filasEliminadas} traducciones eliminadas.`
   }
-  
+
 }
 

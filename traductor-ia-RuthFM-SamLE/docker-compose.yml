@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  # Servicio Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: traductor-backend
+    ports:
+      - "3002:3002"
+    env_file:
+      - .env
+    environment:
+      - PORT=${PORT:-3002}
+      - HOST=${HOST:-0.0.0.0}
+      - NODE_ENV=${NODE_ENV:-development}
+      - AI_API_URL2=${AI_API_URL2:-https://jarvis.ieshlanz.es}
+      - AI_MODEL2=${AI_MODEL2:-mistral:instruct}
+    volumes:
+      - db-data:/app/db
+    networks:
+      - traductor-network
+    restart: unless-stopped
+
+  # Servicio Frontend
+  frontend:
+    image: node:20-alpine
+    container_name: traductor-frontend
+    working_dir: /app
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+    networks:
+      - traductor-network
+    depends_on:
+      - backend
+    command: npx -y http-server -p 5173 -c-1
+    restart: unless-stopped
+
+# Redes compartidas
+networks:
+  traductor-network:
+    driver: bridge
+
+# Volúmenes persistentes
+volumes:
+  db-data:
+    driver: local
