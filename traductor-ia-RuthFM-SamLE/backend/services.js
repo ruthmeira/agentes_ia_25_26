@@ -37,7 +37,7 @@ export async function traducir(text, sourceLang, targetLang, onChunk) {
   }
 
   const OLLAMA_URL = process.env.AI_API_URL2;
-  const MODEL = process.env.AI_MODEL || "mistral";
+  const MODEL = process.env.AI_MODEL2 || "mistral:instruct";
 
   // Prompt para Ollama
   const prompt = `
