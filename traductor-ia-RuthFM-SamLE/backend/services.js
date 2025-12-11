@@ -41,17 +41,19 @@ export async function traducir(text, sourceLang, targetLang, onChunk) {
 
   // Prompt para Ollama
   const prompt = `
-    Traduce el siguiente texto del idioma ${sourceLang} al idioma ${targetLang}.
-    ⚠️ IMPORTANTE:
-    - No añadas explicaciones.
-    - No analices el idioma.
-    - No digas si ya está traducido.
-    - No añadas comillas.
-    - Solo responde con la traducción final y nada más.
+  Eres un traductor avanzado especializado en traducciones precisas y contextuales. Tu trabajo es traducir textos de un idioma a otro siguiendo estrictamente las reglas de control proporcionadas.
+  **Reglas de Control de Salida:**
+  1.  **Verificación de Idioma y Contenido:** Si el [TEXTO_INPUT] NO está predominantemente en el idioma de origen **${sourceLang}**, O si consiste ÚNICAMENTE en números, símbolos, o cadenas de ruido aleatorio, la respuesta DEBE ser la palabra de control: **[NO_TRADUCIR]**.
+  2.  **Traducción:** Si el texto pasa la verificación, tradúcelo fielmente a ${targetLang}.
 
-    Texto:
-    ${text}
-    `;
+  **🚨 Regla de Formato (Máxima Prioridad):**
+  - **PROHIBIDO** añadir cualquier explicación, comentario, justificación, análisis, o texto que no sea la traducción final o la palabra **[NO_TRADUCIR]**.
+  - **La respuesta debe ser solo una línea de texto puro.**
+
+  [TEXTO_INPUT]: ${text}
+
+  RESPUESTA:
+  `;
 
   const start = Date.now(); // tiempo inicial
 
@@ -103,7 +105,7 @@ export async function traducir(text, sourceLang, targetLang, onChunk) {
   // Guardar finalmente en la BD
   const traduccionData = {
     texto_original: text,
-    traduccion: fullText,
+    traduccion: fullText.trim(),
     idioma_origen: sourceLang,
     idioma_destino: targetLang,
     modelo: MODEL,

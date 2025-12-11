@@ -91,15 +91,15 @@
 ---
 
 ## 🧪 Parte 4: Validación y Tests (**samuel**)
-- [ ] Crear `validacion.http`
-- [ ] Test `GET /api/health`
-- [ ] Test `POST /api/translate` válido
-- [ ] Test `POST /api/translate` con errores
-- [ ] Test `GET /api/translations`
-- [ ] Test `GET /api/languages`
-- [ ] Test `GET /api/translations/:id`
-- [ ] Test `DELETE /api/translations/:id`
-- [ ] Test `DELETE /api/translations`
+- [x] Crear `validacion.http`
+- [x] Test `GET /api/health`
+- [x] Test `POST /api/translate` válido
+- [x] Test `POST /api/translate` con errores
+- [x] Test `GET /api/translations`
+- [x] Test `GET /api/languages`
+- [x] Test `GET /api/translations/:id`
+- [x] Test `DELETE /api/translations/:id`
+- [x] Test `DELETE /api/translations`
 
 ---
 
@@ -115,12 +115,12 @@
 - [x] Establecer comando `npm start`
 
 ### 5.2 `docker-compose.yml` (**samuel**)     
-- [ ] Crear servicio `backend`
-- [ ] Crear servicio `frontend` (opcional)
-- [ ] Configurar redes necesarias
-- [ ] Importar variables desde `.env`
-- [ ] No incluir servicio Ollama
-- [ ] Montar volúmenes si es necesario
+- [x] Crear servicio `backend`
+- [x] Crear servicio `frontend` (opcional)
+- [x] Configurar redes necesarias
+- [x] Importar variables desde `.env`
+- [x] No incluir servicio Ollama
+- [x] Montar volúmenes si es necesario
 
 ### 5.3 Verificación (**ruth**)
 - [x] Ejecutar `docker compose up --build`
@@ -129,16 +129,16 @@
 ---
 
 ## 📖 Parte 6: Documentación (`README.md`) (**samuel/ruth**) 
-- [ ] Descripción general del proyecto
-- [ ] Autores
-- [ ] Requisitos del sistema
-- [ ] Instalación y configuración
-- [ ] Ejecución local y con Docker
-- [ ] Detalle de API endpoints con ejemplos
-- [ ] Explicación de estructura de carpetas
-- [ ] Decisiones de diseño (SQLite3, Vanilla JS)
-- [ ] Limitaciones conocidas
-- [ ] Extensiones futuras
+- [x] Descripción general del proyecto
+- [x] Autores
+- [x] Requisitos del sistema
+- [x] Instalación y configuración
+- [x] Ejecución local y con Docker
+- [x] Detalle de API endpoints con ejemplos
+- [x] Explicación de estructura de carpetas
+- [x] Decisiones de diseño (SQLite3, Vanilla JS)
+- [x] Limitaciones conocidas
+- [x] Extensiones futuras
 
 ---
 
